@@ -2,7 +2,7 @@
 Links notaveis:
 - https://elixir-lang.org/docs.html
 - https://elixirschool.com/pt/lessons/basics/documentation
-
+<!--
 Conteúdo
 1. Introdução
   - O que é Elixir
@@ -76,3 +76,4 @@ Conteúdo
   - Conhecendo o ExUnit
   - Criando um novo teste
   - Usando mock para criar um spy
+  -->
