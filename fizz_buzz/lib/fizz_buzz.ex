@@ -4,17 +4,26 @@ defmodule FizzBuzz do
     |>File.read()
     |>handle_file_read()
   end
-  def handle_file_read({:ok,result}) do
-    result
-    |>String.split(",") #"1,2,3,4" -> [1,2,3,4]
-    |>Enum.map(&convert_and_evaluate_numbers/1)
+  defp handle_file_read({:ok,result}) do
+    result =
+      result
+      |>String.split(",") #"1,2,3,4" -> [1,2,3,4]
+      |>Enum.map(&convert_and_evaluate_numbers/1)
+    {:ok, result}
   end
-  def handle_file_read({:error, reason}), do: "Error reading the file: #{reason}"
-  def convert_and_evaluate_numbers(elem)do
-    number = String.to_integer(elem)
-    evaluate_numbers(number)
+  defp handle_file_read({:error, reason}), do: {:error,"Error reading the file: #{reason}"}
+  defp convert_and_evaluate_numbers(elem)do
+    elem
+    |>String.to_integer()
+    |>evaluate_numbers()
   end
-  def evaluate_numbers(number) do
-
-  end
+  defp evaluate_numbers(number) when rem(number,3) == 0 and rem(number,5) == 0, do: :fizzbuzz
+  defp evaluate_numbers(number) when rem(number,3) == 0, do: :fizz
+  defp evaluate_numbers(number) when rem(number,5) == 0, do: :buzz
+  defp evaluate_numbers(number), do: number
+end
+defmodule HelloWorld do
+def init()do
+"Hello World!"
+end
 end
